@@ -540,7 +540,7 @@ section{padding:8rem 5rem;position:relative;overflow:hidden}
 .p-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:.4rem}
 .p-body{font-size:.86rem;line-height:1.7;color:rgba(250,250,248,.4)}
 
-/* ═══ EXPERIENCE ═══ */
+/* ═══ EXPERIENCE — Company Grouped ═══ */
 .exp-s{background:#050507}
 .exp-s::after{
   content:'';position:absolute;bottom:0;right:0;
@@ -548,45 +548,65 @@ section{padding:8rem 5rem;position:relative;overflow:hidden}
   background:radial-gradient(ellipse at right bottom,rgba(201,168,76,.04),transparent 65%);
   pointer-events:none;
 }
-.exp-grid{display:grid;grid-template-columns:220px 1fr;gap:4rem}
-.exp-sidebar{position:sticky;top:8rem;height:fit-content}
-.exp-sidebar-label{
-  font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.22em;
-  text-transform:uppercase;color:rgba(201,168,76,.4);margin-bottom:1.5rem;
-}
-.exp-list-side{display:flex;flex-direction:column;gap:0}
-.exp-side-item{
-  padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04);
-  font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.08em;
-  color:rgba(250,250,248,.25);display:flex;align-items:center;gap:.7rem;
-  transition:color .3s;
-}
-.exp-side-item::before{
-  content:'';width:5px;height:5px;border-radius:50%;
-  background:rgba(201,168,76,.25);flex-shrink:0;transition:background .3s,box-shadow .3s;
-}
-.exp-side-item.cur{color:rgba(201,168,76,.8)}
-.exp-side-item.cur::before{background:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.5)}
+.exp-wrap{max-width:760px}
 
-.exp-entries{display:flex;flex-direction:column}
-.exp-row{
-  padding:2.2rem 0;border-bottom:1px solid rgba(255,255,255,.05);
-  display:grid;grid-template-columns:170px 1fr;gap:2rem;
+.exp-company{
+  padding-bottom:2.6rem;margin-bottom:2.6rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
   opacity:0;transform:translateY(24px);
   transition:opacity .75s cubic-bezier(.23,1,.32,1),transform .75s cubic-bezier(.23,1,.32,1);
 }
-.exp-row.on{opacity:1;transform:translateY(0)}
-.exp-row:hover .exp-title{color:var(--gold)}
-.exp-when{
-  font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;
-  color:rgba(250,250,248,.25);padding-top:.35rem;line-height:1.6;
+.exp-company.on{opacity:1;transform:translateY(0)}
+.exp-company:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+
+.co-head{display:flex;gap:1.1rem;margin-bottom:1.4rem}
+.co-logo{
+  width:50px;height:50px;flex-shrink:0;
+  background:var(--card);border:1px solid rgba(201,168,76,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--gold);
 }
-.exp-title{
-  font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;
-  margin-bottom:.3rem;transition:color .3s;
+.co-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;margin-bottom:.3rem}
+.co-meta{font-size:.82rem;color:rgba(250,250,248,.45);margin-bottom:.25rem}
+.co-loc{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.06em;color:rgba(250,250,248,.25)}
+
+/* nested role list (multi-role companies) */
+.role-list{padding-left:3.7rem;display:flex;flex-direction:column}
+.role-item{display:grid;grid-template-columns:18px 1fr;gap:1.1rem;padding-bottom:1.6rem}
+.role-item:last-child{padding-bottom:0}
+.role-track{display:flex;flex-direction:column;align-items:center;height:100%}
+.role-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:.25rem;transition:color .3s}
+.role-item:hover .role-title{color:var(--gold)}
+.role-dates{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.05em;color:rgba(250,250,248,.4);margin-bottom:.5rem}
+.role-skills{font-size:.78rem;color:rgba(250,250,248,.32);display:flex;align-items:center;gap:.45rem}
+.role-skills::before{content:'◆';font-size:.55rem;color:rgba(201,168,76,.5)}
+
+/* timeline dot/line (shared) */
+.tl-dot{
+  width:11px;height:11px;border-radius:50%;flex-shrink:0;
+  background:var(--gold);box-shadow:0 0 10px rgba(201,168,76,.6);
 }
-.exp-org{font-size:.9rem;color:rgba(201,168,76,.8);margin-bottom:.3rem;font-weight:400}
-.exp-where{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.08em;color:rgba(250,250,248,.2)}
+.tl-dot.pulse{animation:tlPulse 2s ease-in-out infinite}
+.tl-dot.hollow{background:#050507;border:2px solid var(--gold);box-shadow:none}
+.tl-line{
+  width:2px;flex:1;margin:5px 0;border-radius:2px;
+  background:linear-gradient(180deg,var(--gold),rgba(201,168,76,.18));
+}
+.tl-line.fade{background:linear-gradient(180deg,var(--gold),rgba(201,168,76,.35) 40%,transparent)}
+@keyframes tlPulse{
+  0%,100%{box-shadow:0 0 8px rgba(201,168,76,.5)}
+  50%{box-shadow:0 0 18px rgba(201,168,76,1)}
+}
+
+/* single-role company (flat, no nesting) */
+.exp-single{display:flex;gap:1.1rem}
+.exp-single .co-logo{margin-top:.1rem}
+.single-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;margin-bottom:.3rem;transition:color .3s}
+.exp-single:hover .single-title{color:var(--gold)}
+.single-org{font-size:.85rem;color:rgba(201,168,76,.8);margin-bottom:.35rem;font-weight:400}
+.single-dates{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.05em;color:rgba(250,250,248,.4);margin-bottom:.25rem}
+.single-loc{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.06em;color:rgba(250,250,248,.25)}
+
 .badge{
   display:inline-block;padding:.18rem .7rem;margin-left:.8rem;
   background:rgba(201,168,76,.12);color:rgba(201,168,76,.9);
@@ -810,9 +830,10 @@ footer p{
   .photo-frame{width:250px;height:330px}
   .hero-left{padding:8rem 2rem 4rem}
   section{padding:6rem 2rem}
-  .about-grid,.exp-grid{grid-template-columns:1fr;gap:3rem}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
   .sk-grid,.certs-grid,.proj-grid{grid-template-columns:1fr 1fr}
-  .exp-sidebar{display:none}
+  .role-list{padding-left:2.4rem}
+  .co-logo{width:42px;height:42px;font-size:1.2rem}
   footer{padding:1.4rem 2rem;flex-direction:column;gap:.5rem;text-align:center}
 }
 @media(max-width:600px){
@@ -875,7 +896,7 @@ footer p{
     </div>
     <div class="h-stats">
       <div><span class="stat-n">6+</span><span class="stat-l">Roles & Internships</span></div>
-      <div><span class="stat-n">14</span><span class="stat-l">Certifications</span></div>
+      <div><span class="stat-n">16</span><span class="stat-l">Certifications</span></div>
       <div><span class="stat-n">3+</span><span class="stat-l">Years Active</span></div>
     </div>
   </div>
@@ -935,7 +956,7 @@ footer p{
   <div class="about-grid">
     <div class="rv-left">
       <p class="a-p">I'm <strong>Ramuni Shivaa Kiran</strong>, a BBA student in Data Science & AI at Woxsen University (Class of 2028), based in Hyderabad, India. I operate at the intersection of business strategy, emerging technology, and human-centered design.</p>
-      <p class="a-p">Currently wearing multiple hats — <strong>HR Recruiter Intern at EduRun Virtuoso</strong>, <strong>VP at E-Cell Woxsen</strong>, and a <strong>Board Member at Aharyas</strong> in Supply Chain & Logistics. I believe every role is a classroom.</p>
+      <p class="a-p">Currently wearing multiple hats — <strong>Treasurer at Jashn, The Cultural Club</strong>, <strong>VP at E-Cell Woxsen</strong>, and a <strong>Board Member at Aharyas</strong> in Supply Chain & Logistics. I believe every role is a classroom.</p>
       <p class="a-p">Whether it's drafting operational workflows, mentoring peers as a Teaching Assistant, or writing about entrepreneurship — I bring structure to complexity and energy to collaboration.</p>
       <div class="a-quote">"Every challenge is a structured problem waiting to be solved — I thrive at the intersection of business, technology, and people."</div>
     </div>
@@ -951,28 +972,110 @@ footer p{
 <section class="exp-s" id="exp">
   <div class="s-label">02 — Experience</div>
   <h2 class="s-title rv">A track record of<br><em>meaningful work.</em></h2>
-  <div class="exp-grid">
-    <div class="exp-sidebar rv-left">
-      <div class="exp-sidebar-label">All Roles</div>
-      <div class="exp-list-side">
-        <div class="exp-side-item cur">HR Recruiter Intern</div>
-        <div class="exp-side-item cur">Vice President</div>
-        <div class="exp-side-item">Operations Executive</div>
-        <div class="exp-side-item cur">Logistics & Supply Chain</div>
-        <div class="exp-side-item">Supply Chain Lead</div>
-        <div class="exp-side-item">Sales & Marketing</div>
-        <div class="exp-side-item cur">Senior Executive </div>
+  <div class="exp-wrap rv-left">
+
+    <div class="exp-company">
+      <div class="co-head">
+        <div class="co-logo">J</div>
+        <div>
+          <div class="co-name">Jashn – The Cultural Club</div>
+          <div class="co-meta">Full-time · 1 yr 11 mos</div>
+          <div class="co-loc">📍 Hyderabad, Telangana, India · On-site</div>
+        </div>
+      </div>
+      <div class="role-list">
+        <div class="role-item">
+          <div class="role-track"><div class="tl-dot pulse"></div><div class="tl-line fade"></div></div>
+          <div>
+            <div class="role-title">Treasurer <span class="badge">Current</span></div>
+            <div class="role-dates">Jun 2026 — Present · 1 mo</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-track"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="role-title">Senior Executive</div>
+            <div class="role-dates">Aug 2025 — Jun 2026 · 11 mos</div>
+            <div class="role-skills">Management, Operations Management +1 skill</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-track"><div class="tl-dot hollow"></div></div>
+          <div>
+            <div class="role-title">Executive</div>
+            <div class="role-dates">Aug 2024 — Aug 2025 · 1 yr 1 mo</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="exp-entries">
-      <div class="exp-row"><div class="exp-when">Apr 2026 — Present</div><div><div class="exp-title">HR Recruiter Intern <span class="badge">Current</span></div><div class="exp-org">EduRun Virtuoso Services Pvt. Ltd.</div><div class="exp-where">📍 Hyderabad, India</div></div></div>
-      <div class="exp-row"><div class="exp-when">Apr 2026 — Present</div><div><div class="exp-title">Vice President <span class="badge">Current</span></div><div class="exp-org">E-Cell Woxsen University</div><div class="exp-where">📍 Hyderabad, India</div></div></div>
-      <div class="exp-row"><div class="exp-when">Sep 2025 — Apr 2026<br>8 months</div><div><div class="exp-title">Operations Executive</div><div class="exp-org">E-Cell Woxsen University</div><div class="exp-where">📍 Hyderabad, India</div></div></div>
-      <div class="exp-row"><div class="exp-when">Oct 2024 — Present<br>1 yr 7 months</div><div><div class="exp-title">Logistics & Supply Chain <span class="badge">Current</span></div><div class="exp-org">Aharya. In</div><div class="exp-where">📍 Hyderabad, India</div></div></div>
-      <div class="exp-row"><div class="exp-when">Aug 2025 — Oct 2025<br>3 months</div><div><div class="exp-title">Supply Chain Lead</div><div class="exp-org">The Tann Mann Gaadi</div></div></div>
-      <div class="exp-row"><div class="exp-when">Mar 2025 — May 2025<br>3 months</div><div><div class="exp-title">Sales & Marketing Associate</div><div class="exp-org">IFORTIS WORLDWIDE™</div><div class="exp-where">📍 Pune, Maharashtra</div></div></div>
-      <div class="exp-row"><div class="exp-when">Aug 2024 — Present<br>1 yr 9 months</div><div><div class="exp-title">Senior Executive  <span class="badge">Current</span></div><div class="exp-org">Jashn – The Cultural Club, Woxsen</div><div class="exp-where">📍 Hyderabad, India</div></div></div>
+
+    <div class="exp-company">
+      <div class="co-head">
+        <div class="co-logo">E</div>
+        <div>
+          <div class="co-name">E-Cell Woxsen University</div>
+          <div class="co-meta">Full-time · 10 mos</div>
+          <div class="co-loc">📍 Hyderabad, Telangana, India · On-site</div>
+        </div>
+      </div>
+      <div class="role-list">
+        <div class="role-item">
+          <div class="role-track"><div class="tl-dot pulse"></div><div class="tl-line fade"></div></div>
+          <div>
+            <div class="role-title">Vice President <span class="badge">Current</span></div>
+            <div class="role-dates">Apr 2026 — Present · 3 mos</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-track"><div class="tl-dot hollow"></div></div>
+          <div>
+            <div class="role-title">Operations Executive</div>
+            <div class="role-dates">Sep 2025 — Apr 2026 · 8 mos</div>
+            <div class="role-skills">Operations Management</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="exp-company exp-single">
+      <div class="co-logo">A</div>
+      <div>
+        <div class="single-title">Logistics and Supply Chain <span class="badge">Current</span></div>
+        <div class="single-org">Aharya. In · Part-time</div>
+        <div class="single-dates">Oct 2024 — Present · 1 yr 9 mos</div>
+        <div class="single-loc">📍 Hyderabad, Telangana, India · Remote</div>
+      </div>
+    </div>
+
+    <div class="exp-company exp-single">
+      <div class="co-logo">E</div>
+      <div>
+        <div class="single-title">HR Recruiter Intern</div>
+        <div class="single-org">EduRun Virtuoso Services Pvt. Ltd. · Internship</div>
+        <div class="single-dates">Apr 2026 — Jun 2026 · 3 mos</div>
+        <div class="single-loc">📍 Hyderabad, Telangana, India · Remote</div>
+      </div>
+    </div>
+
+    <div class="exp-company exp-single">
+      <div class="co-logo">T</div>
+      <div>
+        <div class="single-title">Supply Chain Lead</div>
+        <div class="single-org">The Tann Mann Gaadi</div>
+        <div class="single-dates">Aug 2025 — Oct 2025 · 3 mos</div>
+      </div>
+    </div>
+
+    <div class="exp-company exp-single">
+      <div class="co-logo">I</div>
+      <div>
+        <div class="single-title">Sales & Marketing Associate</div>
+        <div class="single-org">IFORTIS WORLDWIDE™</div>
+        <div class="single-dates">Mar 2025 — May 2025 · 3 mos</div>
+        <div class="single-loc">📍 Pune, Maharashtra, India</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1078,6 +1181,8 @@ footer p{
     <div class="cert"><div class="cert-iss">IESE Business School · Coursera</div><div class="cert-nm">Organizational Behavior: How to Manage People</div><div class="cert-dt">Dec 2024</div></div>
     <div class="cert"><div class="cert-iss">LearnTube.ai</div><div class="cert-nm">Python Basic Quiz — Certification</div><div class="cert-dt">Feb 2024</div></div>
     <div class="cert"><div class="cert-iss">Coursera</div><div class="cert-nm">Build a Website using Wix Artificial Design Intelligence</div><div class="cert-dt">May 2026</div></div>
+    <div class="cert"><div class="cert-iss">Anthropic</div><div class="cert-nm">Certificate of Completion: Claude 101</div><div class="cert-dt">Jun 2026</div></div>
+    <div class="cert"><div class="cert-iss">MyGov India</div><div class="cert-nm">Certificate of Completion of Quiz in Viksit Bharat</div><div class="cert-dt">May 2022</div></div>
   </div>
 </section>
 
@@ -1170,7 +1275,7 @@ document.addEventListener('mousemove', e => {
   ring.style.left = rx+'px'; ring.style.top = ry+'px';
   requestAnimationFrame(tick);
 })();
-document.querySelectorAll('a,button,.tag,.cert,.proj-card,.pillar,.edu-card,.exp-row').forEach(el => {
+document.querySelectorAll('a,button,.tag,.cert,.proj-card,.pillar,.edu-card,.role-item,.exp-single').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
@@ -1209,7 +1314,7 @@ const io = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.08 });
-document.querySelectorAll('.rv,.rv-left,.rv-right,.rv-scale,.exp-row').forEach(el => io.observe(el));
+document.querySelectorAll('.rv,.rv-left,.rv-right,.rv-scale,.exp-company').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
